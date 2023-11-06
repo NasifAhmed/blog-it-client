@@ -1,6 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { cn } from "../lib/utils";
-import { buttonVariants } from "../components/ui/button";
 import LogInForm from "../components/LogInForm";
 
 const LogIn = () => {

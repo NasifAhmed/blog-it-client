@@ -54,6 +54,8 @@ const LogInForm = () => {
                             Email
                         </Label>
                         <Input
+                            required
+                            name="email"
                             id="email"
                             placeholder="name@example.com"
                             type="email"
@@ -66,6 +68,8 @@ const LogInForm = () => {
                             Password
                         </Label>
                         <Input
+                            required
+                            name="password"
                             id="password"
                             placeholder="Type your password"
                             type="password"
