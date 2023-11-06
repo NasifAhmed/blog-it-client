@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
-        <div>
-            <h1>Footer</h1>
+        <div className="py-20 flex justify-center items-center">
+            <h1>&copy;Footer</h1>
         </div>
     );
 };
