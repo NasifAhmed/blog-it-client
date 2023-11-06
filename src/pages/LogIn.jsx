@@ -5,22 +5,6 @@ const LogIn = () => {
     const navigate = useNavigate();
     return (
         <>
-            {/* <div className="hidden md:block">
-                <img
-                    src="src/assets/marissa-grootes-ck0i9Dnjtj0-unsplash.jpg"
-                    width={1280}
-                    height={843}
-                    alt="Authentication"
-                    className="block dark:hidden"
-                />
-                <img
-                    src="src/assets/banner1.jpg"
-                    width={1280}
-                    height={843}
-                    alt="Authentication"
-                    className="hidden dark:block"
-                />
-            </div> */}
             <div className="container relative h-[800px] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
                     <div className="absolute inset-0 bg-zinc-900" />

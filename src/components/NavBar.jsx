@@ -10,6 +10,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
 
 const NavBar = () => {
     // [dropDownState, setDropDownState] = useState([]);
@@ -36,25 +37,46 @@ const NavBar = () => {
                 >
                     Blogs
                 </NavLink>
-                <NavLink
-                    to={`/wishlist`}
-                    className={"transition-colors hover:text-primary"}
-                >
-                    Wishlist
-                </NavLink>
+                {user && (
+                    <>
+                        <NavLink
+                            to={`/add-blog`}
+                            className={"transition-colors hover:text-primary"}
+                        >
+                            Add Blog
+                        </NavLink>
+                        <NavLink
+                            to={`/wishlist`}
+                            className={"transition-colors hover:text-primary"}
+                        >
+                            Wishlist
+                        </NavLink>
+                    </>
+                )}
             </div>
             <div className="flex flex-1 ml-auto justify-end items-center gap-1">
                 {user ? (
                     <>
-                        <div className="w-10 rounded-full">
-                            <img src={user.photoURL} />
-                        </div>
+                        <Avatar className="mr-2">
+                            <AvatarImage src={user.photoURL} />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
 
                         <span className="mr-5">{user.displayName}</span>
-                        <Button onClick={handleLogOut}>Log Out</Button>
+                        <Button
+                            className="hidden md:block"
+                            onClick={handleLogOut}
+                        >
+                            Log Out
+                        </Button>
                     </>
                 ) : (
-                    <Button onClick={() => navigate("/login")}>Log In</Button>
+                    <Button
+                        className="hidden md:block"
+                        onClick={() => navigate("/login")}
+                    >
+                        Log In
+                    </Button>
                 )}
 
                 <ThemeToggle></ThemeToggle>
@@ -88,6 +110,37 @@ const NavBar = () => {
                             >
                                 Wishlist
                             </Button>
+                        </DropdownMenuItem>
+                        {user && (
+                            <>
+                                <DropdownMenuItem>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => navigate("/add-blog")}
+                                    >
+                                        Add Blog
+                                    </Button>
+                                </DropdownMenuItem>
+                            </>
+                        )}
+                        <DropdownMenuItem>
+                            {user ? (
+                                <>
+                                    <Button
+                                        className=" md:hidden"
+                                        onClick={handleLogOut}
+                                    >
+                                        Log Out
+                                    </Button>
+                                </>
+                            ) : (
+                                <Button
+                                    className=" md:hidden"
+                                    onClick={() => navigate("/login")}
+                                >
+                                    Log In
+                                </Button>
+                            )}
                         </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
