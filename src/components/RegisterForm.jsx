@@ -4,9 +4,11 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
-const RegisterForm = () => {
+const RegisterForm = ({ locationState }) => {
     const { createUser, updateUser } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
     const handleRegister = (e) => {
@@ -39,6 +41,7 @@ const RegisterForm = () => {
                     updateUser(result.user, name, photoURL)
                         .then(() => {
                             console.log("User profile updated successfully");
+                            navigate(locationState ? locationState : "/");
                         })
                         .catch((error) => {
                             console.error(

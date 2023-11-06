@@ -57,7 +57,7 @@ const AddBlog = () => {
                         <Label className="" htmlFor="category">
                             Select a Category
                         </Label>
-                        <Select name="category" id="category" required>
+                        <Select required name="category" id="category">
                             <SelectTrigger className="w-[180px]">
                                 <SelectValue placeholder="Categories" />
                             </SelectTrigger>

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import LogInForm from "../components/LogInForm";
+import { useLocation } from "react-router-dom";
 
 const LogIn = () => {
     const navigate = useNavigate();
+    const locationState = useLocation().state;
     return (
         <>
             <div className="container relative h-[800px] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -29,7 +31,7 @@ const LogIn = () => {
                                 Enter your email and password below to log in
                             </p>
                         </div>
-                        <LogInForm></LogInForm>
+                        <LogInForm locationState={locationState}></LogInForm>
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             No account ? Please{" "}
                             <span

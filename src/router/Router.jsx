@@ -6,6 +6,7 @@ import Wishlist from "../pages/Wishlist";
 import LogIn from "../pages/LogIn";
 import Register from "../pages/Register";
 import AddBlog from "../pages/AddBlog";
+import PrivateRoute from "./PrivateRouter";
 
 const Router = createBrowserRouter([
     {
@@ -34,7 +35,11 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/add-blog",
-                element: <AddBlog></AddBlog>,
+                element: (
+                    <PrivateRoute>
+                        <AddBlog></AddBlog>
+                    </PrivateRoute>
+                ),
             },
         ],
     },

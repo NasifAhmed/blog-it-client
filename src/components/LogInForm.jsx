@@ -4,11 +4,10 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const LogInForm = () => {
+const LogInForm = ({ locationState }) => {
     const { signIn, googleSignIn } = useContext(AuthContext);
-    const location = useLocation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
@@ -25,7 +24,7 @@ const LogInForm = () => {
         signIn(email, password)
             .then((result) => {
                 console.log(result.user);
-                navigate(location?.state ? location.state : "/");
+                navigate(locationState ? locationState : "/");
             })
             .catch((error) => {
                 setError(error.message);
@@ -37,7 +36,7 @@ const LogInForm = () => {
         googleSignIn()
             .then((result) => {
                 console.log(result.user);
-                navigate(location?.state ? location.state : "/");
+                navigate(locationState ? locationState : "/");
             })
             .catch((error) => {
                 setError(error.message);

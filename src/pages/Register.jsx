@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 
 const LogIn = () => {
     const navigate = useNavigate();
+    const locationState = useLocation().state;
     return (
         <>
             {/* <div className="hidden md:block">
@@ -45,7 +46,9 @@ const LogIn = () => {
                                 Enter your info below to register
                             </p>
                         </div>
-                        <RegisterForm></RegisterForm>
+                        <RegisterForm
+                            locationState={locationState}
+                        ></RegisterForm>
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             Already have an account ? Please{" "}
                             <span
