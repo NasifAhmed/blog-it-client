@@ -9,10 +9,8 @@ export const useGet = (endPoint, chacheName) => {
         return response.data;
     };
 
-    const { data, isError, error, isLoading, isSuccess, refetch } = useQuery({
+    return useQuery({
         queryKey: chacheName,
         queryFn: getData,
     });
-    console.log(data);
-    return { data, isError, error, isLoading, isSuccess, refetch };
 };
