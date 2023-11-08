@@ -5,9 +5,11 @@ import { Input } from "./ui/input";
 import { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useAxios } from "../hooks/useAxios";
 
-const RegisterForm = ({ locationState }) => {
+const RegisterForm = ({ locationState, toast }) => {
     const { createUser, updateUser } = useContext(AuthContext);
+    const axios = useAxios();
     const navigate = useNavigate();
     const [error, setError] = useState();
     const [isLoading, setIsLoading] = useState(false);
@@ -15,32 +17,41 @@ const RegisterForm = ({ locationState }) => {
         e.preventDefault();
         const form = new FormData(e.currentTarget);
         console.log(form);
-        const name = form.get("name");
+        const displayName = form.get("name");
         const photoURL = form.get("photoUrl");
         const email = form.get("email");
         const password = form.get("password");
-        console.log(name, photoURL, email, password);
+        console.log(displayName, photoURL, email, password);
         // reset error
         setError("");
         if (password.length < 6) {
             setError("Error: Password should be 6+ characters long !");
+        } else if (/^[^A-Z]*$/.test(password)) {
+            setError(
+                "Error: Password should have at lease one capital letter !"
+            );
+        } else if (/^[a-zA-Z0-9]*$/.test(password)) {
+            setError(
+                "Error: Password should have at lease one special character !"
+            );
+        } else if (/^[^0-9]*$/.test(password)) {
+            setError(
+                "Error: Password should have at lease one numeric character !"
+            );
         }
-        //else if (/^[^A-Z]*$/.test(password)) {
-        //     setError(
-        //         "Error: Password should have at lease one capital letter !"
-        //     );
-        // } else if (/^[a-zA-Z0-9]*$/.test(password)) {
-        //     setError(
-        //         "Error: Password should have at lease one special character !"
-        //     );
-        // }
+
         if (error === "") {
-            createUser(email, password)
+            toast
+                .promise(createUser(email, password), {
+                    loading: "Logging in...",
+                    success: <b>Log in successful!</b>,
+                    error: <b>Could not log in.</b>,
+                })
                 .then((result) => {
                     console.log(result.user);
-                    updateUser(result.user, name, photoURL)
+                    updateUser(result.user, displayName, photoURL)
                         .then(() => {
-                            console.log("User profile updated successfully");
+                            console.log("User profile created successfully");
                             navigate(locationState ? locationState : "/");
                         })
                         .catch((error) => {
@@ -110,6 +121,7 @@ const RegisterForm = ({ locationState }) => {
                             disabled={isLoading}
                         />
                     </div>
+                    {error && <p className="text-red-700">{error}</p>}
                     <Button disabled={isLoading}>
                         {/* {isLoading && (
                             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

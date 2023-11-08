@@ -5,12 +5,14 @@ import { Input } from "./ui/input";
 import { useState, useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useAxios } from "../hooks/useAxios";
 
-const LogInForm = ({ locationState }) => {
+const LogInForm = ({ locationState, toast }) => {
     const { signIn, googleSignIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
+    const axios = useAxios(true);
 
     async function handleLogIn(e) {
         e.preventDefault();
@@ -21,7 +23,13 @@ const LogInForm = ({ locationState }) => {
         console.log(email, password);
         // reset error
         setError("");
-        signIn(email, password)
+
+        toast
+            .promise(signIn(email, password), {
+                loading: "Logging in...",
+                success: <b>Log in successful!</b>,
+                error: <b>Could not log in.</b>,
+            })
             .then((result) => {
                 console.log(result.user);
                 navigate(locationState ? locationState : "/");
@@ -33,10 +41,15 @@ const LogInForm = ({ locationState }) => {
     }
 
     const handleGoogleSignIn = () => {
-        googleSignIn()
+        toast
+            .promise(googleSignIn(), {
+                loading: "Logging in...",
+                success: <b>Log in successful!</b>,
+                error: <b>Could not log in.</b>,
+            })
             .then((result) => {
                 console.log(result.user);
-                navigate(locationState ? locationState : "/");
+                console.log("User profile created successfully");
             })
             .catch((error) => {
                 setError(error.message);
@@ -75,6 +88,9 @@ const LogInForm = ({ locationState }) => {
                             disabled={isLoading}
                         />
                     </div>
+                    {error && (
+                        <p className="text-red-700">Incorrect Email/Password</p>
+                    )}
                     <Button disabled={isLoading}>
                         {/* {isLoading && (
                             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />

@@ -19,6 +19,7 @@ const ThemeToggle = () => {
                 ? "dark"
                 : "light";
             root.classList.add(systemTheme);
+            setTheme(systemTheme);
             return;
         }
         root.classList.add(theme);

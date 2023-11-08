@@ -1,8 +1,14 @@
-import { Card, CardContent } from "../components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+} from "../components/ui/card";
 
 const Banner = () => {
     return (
         <Card className="w-full md:p-10 p-2 ">
+            <CardHeader></CardHeader>
             <CardContent className="flex md:flex-row flex-col justify-around items-center max-h-[600px] gap-5">
                 <div className="md:grid md:grid-cols-2 md:grid-flow-col gap-5 order-2 md:order-1">
                     <img
@@ -25,7 +31,7 @@ const Banner = () => {
                 <div className=" space-y-4 md:space-y-10 order-1 md:order-2 text-center md:text-left">
                     <h1 className="md:text-9xl text-3xl ">
                         Blog
-                        <span className="font-black text-muted-foreground">
+                        <span className="font-bold text-muted-foreground">
                             .
                         </span>
                         <span>it</span>
@@ -33,6 +39,7 @@ const Banner = () => {
                     <p className="md:text-4xl text-lg">Write your heart away</p>
                 </div>
             </CardContent>
+            <CardFooter></CardFooter>
         </Card>
     );
 };

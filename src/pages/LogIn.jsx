@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LogInForm from "../components/LogInForm";
 import { useLocation } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -31,7 +32,10 @@ const LogIn = () => {
                                 Enter your email and password below to log in
                             </p>
                         </div>
-                        <LogInForm locationState={locationState}></LogInForm>
+                        <LogInForm
+                            locationState={locationState}
+                            toast={toast}
+                        ></LogInForm>
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             No account ? Please{" "}
                             <span
@@ -44,6 +48,7 @@ const LogIn = () => {
                     </div>
                 </div>
             </div>
+            <Toaster position="top-center" reverseOrder={true}></Toaster>
         </>
     );
 };

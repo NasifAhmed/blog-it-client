@@ -11,14 +11,37 @@ import {
     DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "../components/ui/avatar";
+import { useAxios } from "../hooks/useAxios";
 
 const NavBar = () => {
     // [dropDownState, setDropDownState] = useState([]);
 
-    const { user, logOut } = useContext(AuthContext);
+    const { user, logOut, setTokenState, tokenState } = useContext(AuthContext);
+    const axios = useAxios(true);
     const navigate = useNavigate();
     const handleLogOut = () => {
-        logOut().then().catch();
+        const userEmail = user.email;
+        logOut()
+            .then((res) => {
+                if (tokenState) {
+                    axios
+                        .post(
+                            "/delete-token",
+                            { email: userEmail },
+                            { withCredentials: true }
+                        )
+                        .then((res) => {
+                            console.log(
+                                `Token delete response ${JSON.stringify(res)}`
+                            );
+                            setTokenState(false);
+                        });
+                }
+                console.log(res);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     return (
@@ -36,6 +59,12 @@ const NavBar = () => {
                     className={"transition-colors hover:text-primary"}
                 >
                     Blogs
+                </NavLink>
+                <NavLink
+                    to={`/featured`}
+                    className={"transition-colors hover:text-primary"}
+                >
+                    Featured Blogs
                 </NavLink>
                 {user && (
                     <>
@@ -59,7 +88,12 @@ const NavBar = () => {
                     <>
                         <Avatar className="mr-2">
                             <AvatarImage src={user.photoURL} />
-                            <AvatarFallback>CN</AvatarFallback>
+                            <AvatarFallback>
+                                <img
+                                    src="https://i.ibb.co/dWbbNfk/fallback.png"
+                                    alt=""
+                                />
+                            </AvatarFallback>
                         </Avatar>
 
                         <span className="mr-5">{user.displayName}</span>
@@ -71,16 +105,24 @@ const NavBar = () => {
                         </Button>
                     </>
                 ) : (
-                    <Button
-                        className="hidden md:block"
-                        onClick={() => navigate("/login")}
-                    >
-                        Log In
-                    </Button>
+                    <>
+                        <Button
+                            className="hidden md:block"
+                            onClick={() => navigate("/login")}
+                        >
+                            Log In
+                        </Button>
+                        <Button
+                            className="hidden md:block"
+                            onClick={() => navigate("/register")}
+                        >
+                            Register
+                        </Button>
+                    </>
                 )}
 
                 <ThemeToggle></ThemeToggle>
-                <DropdownMenu>
+                <DropdownMenu className="z-50">
                     <DropdownMenuTrigger className="md:hidden">
                         <Button variant="outline" size="icon">
                             <Menu />
@@ -106,13 +148,22 @@ const NavBar = () => {
                         <DropdownMenuItem>
                             <Button
                                 variant="ghost"
-                                onClick={() => navigate("/wishlist")}
+                                onClick={() => navigate("/blogs")}
                             >
-                                Wishlist
+                                Feature Blogs
                             </Button>
                         </DropdownMenuItem>
+
                         {user && (
                             <>
+                                <DropdownMenuItem>
+                                    <Button
+                                        variant="ghost"
+                                        onClick={() => navigate("/wishlist")}
+                                    >
+                                        Wishlist
+                                    </Button>
+                                </DropdownMenuItem>
                                 <DropdownMenuItem>
                                     <Button
                                         variant="ghost"
@@ -134,12 +185,20 @@ const NavBar = () => {
                                     </Button>
                                 </>
                             ) : (
-                                <Button
-                                    className=" md:hidden"
-                                    onClick={() => navigate("/login")}
-                                >
-                                    Log In
-                                </Button>
+                                <>
+                                    <Button
+                                        className=" md:hidden"
+                                        onClick={() => navigate("/login")}
+                                    >
+                                        Log In
+                                    </Button>
+                                    <Button
+                                        className=" md:hidden"
+                                        onClick={() => navigate("/register")}
+                                    >
+                                        Register
+                                    </Button>
+                                </>
                             )}
                         </DropdownMenuItem>
                     </DropdownMenuContent>
