@@ -32,7 +32,7 @@ const Blogs = () => {
             // toast.success("Data successfully fetched!");
             return res.data;
         },
-        enabled: !!user,
+        // enabled: !!user,
     });
 
     const categoryHandler = (selectedCategory) => {
