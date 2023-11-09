@@ -51,7 +51,7 @@ const Blogs = () => {
 
     return (
         <div className="space-y-10">
-            <Card className="p-10 flex justify-between items-center">
+            <Card className="p-10 flex flex-col-reverse md:flex-row gap-5 justify-between items-center">
                 <div>
                     <h1 className="text-xl pb-3 font-semibold">
                         Filter By Category :

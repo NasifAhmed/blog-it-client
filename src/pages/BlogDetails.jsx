@@ -59,23 +59,26 @@ const BlogDetails = () => {
                                     }}
                                 ></div>
                                 {/* <p className="">{response.data.desc_long}</p> */}
-                                <div>
-                                    <p>
-                                        {" "}
-                                        <span className="font-semibold">
-                                            Short :
-                                        </span>{" "}
-                                        {response.data.desc_short}
-                                    </p>
+                                <div className="text-base md:text-xl">
+                                    <div>
+                                        <p>
+                                            {" "}
+                                            <span className="font-semibold">
+                                                Short :
+                                            </span>{" "}
+                                            {response.data.desc_short}
+                                        </p>
+                                    </div>
+                                    <br />
+                                    {response.data.desc_long
+                                        .split("\n\n")
+                                        .map((paragraph) => (
+                                            <Paragraph
+                                                key="2"
+                                                para={paragraph}
+                                            ></Paragraph>
+                                        ))}
                                 </div>
-                                {response.data.desc_long
-                                    .split("\n\n")
-                                    .map((paragraph) => (
-                                        <Paragraph
-                                            key="2"
-                                            para={paragraph}
-                                        ></Paragraph>
-                                    ))}
                             </CardContent>
                             <CardFooter>
                                 {user ? (

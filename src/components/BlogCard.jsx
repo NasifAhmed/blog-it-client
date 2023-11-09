@@ -69,7 +69,7 @@ const BlogCard = ({ payload, toast }) => {
                         }}
                     >
                         <div className="h-[300px] absolute bottom-0 left-0  w-full rounded-md p-5 bg-gradient-to-t from-black flex flex-col justify-end items-center">
-                            <p className="text-base md:text-xl text-white">
+                            <p className="text-sm md:text-xl text-white">
                                 {payload.desc_short}
                             </p>
                         </div>

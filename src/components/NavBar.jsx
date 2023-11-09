@@ -46,11 +46,14 @@ const NavBar = () => {
 
     return (
         <nav className="flex justify-between items-center font-medium text-lg mb-20">
-            <div className="flex-1 mr-auto flex gap-2">
+            <div
+                className="flex-1 mr-auto flex-col gap-2"
+                onClick={() => navigate("/")}
+            >
                 <Avatar className="mr-2">
                     <AvatarImage src="https://i.ibb.co/NmRFDbN/logo.png" />
                 </Avatar>
-                <h1>Blog.it</h1>
+                <h1 className="text-sm md:text-lg">Blog.it</h1>
             </div>
             <div className="md:flex justify-between items-center gap-10 text-muted-foreground hidden">
                 <NavLink
@@ -90,7 +93,7 @@ const NavBar = () => {
             </div>
             <div className="flex flex-1 ml-auto justify-end items-center gap-1">
                 {user ? (
-                    <>
+                    <div className="flex text-xs md:text-base items-center">
                         <Avatar className="mr-2">
                             <AvatarImage src={user.photoURL} />
                             <AvatarFallback>
@@ -108,7 +111,7 @@ const NavBar = () => {
                         >
                             Log Out
                         </Button>
-                    </>
+                    </div>
                 ) : (
                     <>
                         <Button

@@ -16,23 +16,11 @@ const Home = () => {
     return (
         <div className="flex-grow space-y-20">
             <Banner></Banner>
+            <RecentBlogs></RecentBlogs>
             <Card>
                 <CardHeader>
                     <CardTitle>
-                        <h1 className="text-center text-4xl mb-10">
-                            Recent Blogs
-                        </h1>
-                    </CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <RecentBlogs></RecentBlogs>
-                </CardContent>
-                <CardFooter></CardFooter>
-            </Card>
-            <Card>
-                <CardHeader>
-                    <CardTitle>
-                        <h1 className="text-center text-4xl mb-10">
+                        <h1 className="text-center text-xl md:text-4xl mb-10">
                             Recent Comments
                         </h1>
                     </CardTitle>
@@ -54,6 +42,7 @@ const Home = () => {
                 <CardContent></CardContent>
                 <CardFooter></CardFooter>
             </Card>
+
             <Card className="">
                 <CardHeader>
                     <CardTitle className="text-center text-2xl font-semibold">

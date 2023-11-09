@@ -36,7 +36,9 @@ const Banner = () => {
                         </span>
                         <span>it</span>
                     </h1>
-                    <p className="md:text-4xl text-lg">Write your heart away</p>
+                    <p className="md:text-4xl text-lg">
+                        Write the blog you always wanted
+                    </p>
                 </div>
             </CardContent>
             <CardFooter></CardFooter>

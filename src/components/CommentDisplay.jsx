@@ -41,14 +41,16 @@ const CommentDisplay = ({ blogId }) => {
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <h2 className="text-xl font-semibold">
+                                        <h2 className="text-base md:text-xl font-semibold">
                                             {data.name}
                                         </h2>
                                     </div>
                                 </div>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg">{data.comment}</p>
+                                <p className="text-sm md:text-lg">
+                                    {data.comment}
+                                </p>
                             </CardContent>
                         </Card>
                     </div>
