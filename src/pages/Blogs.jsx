@@ -36,10 +36,14 @@ const Blogs = () => {
     });
 
     const categoryHandler = (selectedCategory) => {
-        const newBlogs = response.data.filter(
-            (blog) => blog.category === selectedCategory
-        );
-        setBlogs(newBlogs);
+        if (selectedCategory === "all") {
+            setBlogs(response.data);
+        } else {
+            const newBlogs = response.data.filter(
+                (blog) => blog.category === selectedCategory
+            );
+            setBlogs(newBlogs);
+        }
     };
 
     const searchHandler = (typedValue) => {
@@ -64,9 +68,10 @@ const Blogs = () => {
                         id="category"
                     >
                         <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Categories" />
+                            <SelectValue placeholder="All" />
                         </SelectTrigger>
                         <SelectContent>
+                            <SelectItem value="all">All</SelectItem>
                             <SelectItem value="tech">Tech</SelectItem>
                             <SelectItem value="philosophy">
                                 Philosophy
