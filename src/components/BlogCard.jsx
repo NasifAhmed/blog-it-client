@@ -68,8 +68,8 @@ const BlogCard = ({ payload, toast }) => {
                             backgroundImage: `url(${payload.image_url})`,
                         }}
                     >
-                        <div className="h-[150px] absolute bottom-0 left-0 opacity-90 w-full rounded-md p-5 bg-gradient-to-t from-white dark:from-black flex flex-col justify-end items-center">
-                            <p className="text-base md:text-xl">
+                        <div className="h-[300px] absolute bottom-0 left-0  w-full rounded-md p-5 bg-gradient-to-t from-black flex flex-col justify-end items-center">
+                            <p className="text-base md:text-xl text-white">
                                 {payload.desc_short}
                             </p>
                         </div>
