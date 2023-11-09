@@ -193,7 +193,7 @@ const NavBar = () => {
                                     </Button>
                                 </>
                             ) : (
-                                <>
+                                <div className="flex flex-col">
                                     <Button
                                         className=" md:hidden"
                                         onClick={() => navigate("/login")}
@@ -206,7 +206,7 @@ const NavBar = () => {
                                     >
                                         Register
                                     </Button>
-                                </>
+                                </div>
                             )}
                         </DropdownMenuItem>
                     </DropdownMenuContent>

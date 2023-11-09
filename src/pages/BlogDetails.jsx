@@ -45,10 +45,10 @@ const BlogDetails = () => {
                 ) : (
                     <>
                         <Card className="space-y-4 md:space-y-8 md:px-14 mb-10">
-                            <CardTitle className="text-3xl md:text-5xl text-center mt-5 md:mt-10    ">
+                            <CardTitle className="text-2xl md:text-5xl text-center mt-5 md:mt-10    ">
                                 {response.data.title}
                             </CardTitle>
-                            <CardDescription className="text-lg md:text-xl text-center">
+                            <CardDescription className="text-base md:text-xl text-center">
                                 {response.data.owner}
                             </CardDescription>
                             <CardContent className="text-base md:text-lg space-y-7">
@@ -100,7 +100,7 @@ const BlogDetails = () => {
                             ></CommentBox>
                         )}
                         <div>
-                            <h1 className="text-2xl text-center underline mt-10">
+                            <h1 className="md:text-2xl text-center underline mt-10">
                                 Comments
                             </h1>
                         </div>
