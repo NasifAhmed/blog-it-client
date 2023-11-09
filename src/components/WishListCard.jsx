@@ -34,7 +34,6 @@ const WishListCard = ({ payload, wishListCallBack, toast }) => {
         queryKey: ["wishlist", "cards", payload._id],
         queryFn: async () => {
             const res = await axios.get(`/blogs?id=${payload.blog}`);
-            toast.success("Data successfully fetched!");
             return res.data;
         },
     });
