@@ -13,17 +13,17 @@ const Banner = () => {
                 <div className="md:grid md:grid-cols-2 md:grid-flow-col gap-5 order-2 md:order-1">
                     <img
                         className="max-h-[620px] w-auto object-cover row-span-2 place-self-center hidden md:block"
-                        src="src/assets/banner1.jpg"
+                        src="https://i.ibb.co/09Y7MZd/banner1.jpg"
                         alt=""
                     />
                     <img
                         className="max-h-[300px] w-auto object-cover  row-span-1 hidden md:block"
-                        src="src/assets/banner2.jpg"
+                        src="https://i.ibb.co/zsT4xFH/banner2.jpg"
                         alt=""
                     />
                     <img
                         className="max-h-[300px] w-auto object-cover row-span-1"
-                        src="src/assets/banner3.jpg"
+                        src="https://i.ibb.co/mCkC1DM/banner3.jpg"
                         alt=""
                     />
                 </div>

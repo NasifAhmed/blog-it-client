@@ -1,8 +1,7 @@
-# React + Vite
+# Blog.it Website Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   Its a cool blog website wher users can post blogs freely and comment
+-   I used ShadCN UI to style my components and color
+-   The site uses a backend server hosted at vercel
+-   The site's authinticatio is done on firebase
+-   The site is build with React

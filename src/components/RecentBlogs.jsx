@@ -2,7 +2,7 @@ import BlogCard from "../components/BlogCard";
 import BlogsSkeleton from "../components/BlogsSkeleton";
 import { useAxios } from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const RecentBlogs = () => {
     const axios = useAxios();
@@ -12,7 +12,6 @@ const RecentBlogs = () => {
             const res = await axios.get("/blogs?sort=-time_added");
 
             // await new Promise((resolve) => setTimeout(resolve, 3000));
-            toast.success("Data successfully fetched!");
             return res.data;
         },
     });
@@ -38,7 +37,6 @@ const RecentBlogs = () => {
                             ></BlogCard>
                         ))
                 )}
-                <Toaster position="top-center" reverseOrder={true}></Toaster>
             </div>
         </div>
     );

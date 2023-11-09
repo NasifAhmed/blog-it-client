@@ -12,7 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import Paragraph from "../components/Paragraph";
 import BlogDetailsSkeleton from "../components/BlogDetailsSkeleton";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import CommentBox from "../components/CommentBox";
 import CommentDisplay from "../components/CommentDisplay";
 import { useContext, useState } from "react";
@@ -30,7 +30,6 @@ const BlogDetails = () => {
         queryFn: async () => {
             const res = await axios.get(`/blogs?id=${id}`);
             // await new Promise((resolve) => setTimeout(resolve, 3000));
-            toast.success("Data successfully fetched!");
             return res.data;
         },
     });
@@ -106,7 +105,6 @@ const BlogDetails = () => {
                     </>
                 )}
             </div>
-            <Toaster position="top-center" reverseOrder={true}></Toaster>
         </>
     );
 };

@@ -50,6 +50,7 @@ const LogInForm = ({ locationState, toast }) => {
             .then((result) => {
                 console.log(result.user);
                 console.log("User profile created successfully");
+                navigate(locationState ? locationState : "/");
             })
             .catch((error) => {
                 setError(error.message);

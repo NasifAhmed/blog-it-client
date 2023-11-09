@@ -2,7 +2,7 @@ import BlogCard from "../components/BlogCard";
 import BlogsSkeleton from "../components/BlogsSkeleton";
 import { useAxios } from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Card, CardHeader, CardContent, CardTitle } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
@@ -11,10 +11,9 @@ const RecentComments = () => {
     const response = useQuery({
         queryKey: ["comments", "recent"],
         queryFn: async () => {
-            const res = await axios.get("/comments?sort=-time_added");
+            const res = await axios.get("/comments?sort=time_added");
 
             // await new Promise((resolve) => setTimeout(resolve, 3000));
-            toast.success("Data successfully fetched!");
             return res.data;
         },
     });
@@ -51,7 +50,6 @@ const RecentComments = () => {
                         </Card>
                     ))
                 )}
-                <Toaster position="top-center" reverseOrder={true}></Toaster>
             </div>
         </div>
     );

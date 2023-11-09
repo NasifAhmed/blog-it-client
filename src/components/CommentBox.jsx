@@ -54,7 +54,10 @@ const CommentBox = ({ toast, blogContext, ownerCheck }) => {
                     error: <b>Could not add comment.</b>,
                 }
             )
-            .then(queryClient.invalidateQueries(["comments", blogContext]));
+            .then(async () => {
+                queryClient.invalidateQueries(["comments", blogContext]);
+            });
+        queryClient.invalidateQueries(["comments", blogContext]);
     };
 
     return (

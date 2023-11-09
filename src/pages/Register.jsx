@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -63,7 +63,6 @@ const LogIn = () => {
                     </div>
                 </div>
             </div>
-            <Toaster position="top-center" reverseOrder={true}></Toaster>
         </>
     );
 };

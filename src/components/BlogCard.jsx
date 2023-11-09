@@ -11,7 +11,7 @@ import { Button } from "./ui/button";
 import { useAxios } from "../hooks/useAxios";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 
 const BlogCard = ({ payload, toast }) => {

@@ -2,7 +2,6 @@ import DataTable from "react-data-table-component";
 import { useAxios } from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import toast, { Toaster } from "react-hot-toast";
 
 const columns = [
     {
@@ -38,7 +37,6 @@ const BlogTable = () => {
             const res = await axios.get("/blogs?sort=-time_added");
 
             // await new Promise((resolve) => setTimeout(resolve, 3000));
-            toast.success("Data successfully fetched!");
             return res.data;
         },
     });
@@ -71,7 +69,6 @@ const BlogTable = () => {
                         .slice(0, 10)}
                 />
             )}
-            <Toaster position="top-center" reverseOrder={true}></Toaster>
         </div>
     );
 };

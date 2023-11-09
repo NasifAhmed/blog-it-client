@@ -46,7 +46,12 @@ const NavBar = () => {
 
     return (
         <nav className="flex justify-between items-center font-medium text-lg mb-20">
-            <div className="flex-1 mr-auto">LOGO</div>
+            <div className="flex-1 mr-auto flex gap-2">
+                <Avatar className="mr-2">
+                    <AvatarImage src="https://i.ibb.co/NmRFDbN/logo.png" />
+                </Avatar>
+                <h1>Blog.it</h1>
+            </div>
             <div className="md:flex justify-between items-center gap-10 text-muted-foreground hidden">
                 <NavLink
                     to={`/`}

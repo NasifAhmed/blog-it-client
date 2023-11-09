@@ -2,7 +2,7 @@ import Banner from "../components/Banner";
 import RecentBlogs from "../components/RecentBlogs";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
     Card,
     CardContent,
@@ -29,7 +29,6 @@ const Home = () => {
                 </CardContent>
                 <CardFooter></CardFooter>
             </Card>
-
             <Card>
                 <CardHeader>
                     <CardTitle>
@@ -41,6 +40,18 @@ const Home = () => {
                 <CardContent>
                     <RecentComments></RecentComments>
                 </CardContent>
+                <CardFooter></CardFooter>
+            </Card>
+            <Card
+                className=" h-96 relative rounded-md bg-fixed bg-no-repeat bg-cover"
+                style={{
+                    backgroundImage: `url(${"https://i.ibb.co/sWTDJdH/life.jpg"})`,
+                }}
+            >
+                <CardHeader>
+                    <CardTitle></CardTitle>
+                </CardHeader>
+                <CardContent></CardContent>
                 <CardFooter></CardFooter>
             </Card>
             <Card className="">

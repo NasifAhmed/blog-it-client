@@ -15,7 +15,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Heading1 } from "lucide-react";
 import { useParams } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const UpdateBlog = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -181,8 +181,6 @@ const UpdateBlog = () => {
                     </div>
                 </form>
             )}
-
-            <Toaster position="top-center" reverseOrder={true}></Toaster>
         </div>
     );
 };

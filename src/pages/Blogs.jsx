@@ -2,7 +2,7 @@ import BlogCard from "../components/BlogCard";
 import BlogsSkeleton from "../components/BlogsSkeleton";
 import { useAxios } from "../hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import {
     Select,
     SelectContent,
@@ -13,10 +13,13 @@ import {
 import { Input } from "../components/ui/input";
 import { Card } from "../components/ui/card";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../providers/AuthProvider";
 
 const Blogs = () => {
     const axios = useAxios();
     const [blogs, setBlogs] = useState();
+    const { user } = useContext(AuthContext);
 
     const response = useQuery({
         queryKey: ["blogs", "blogcards"],
@@ -25,9 +28,11 @@ const Blogs = () => {
 
             // await new Promise((resolve) => setTimeout(resolve, 3000));
             setBlogs(res.data);
-            toast.success("Data successfully fetched!");
+            // console.logs(`Fetach status : ${}`)
+            // toast.success("Data successfully fetched!");
             return res.data;
         },
+        enabled: !!user,
     });
 
     const categoryHandler = (selectedCategory) => {
@@ -49,7 +54,7 @@ const Blogs = () => {
             <Card className="p-10 flex justify-between items-center">
                 <div>
                     <h1 className="text-xl pb-3 font-semibold">
-                        Filet By Category :
+                        Filter By Category :
                     </h1>
                     <Select
                         onValueChange={(selectedValue) =>
@@ -105,7 +110,6 @@ const Blogs = () => {
                         <BlogsSkeleton key={4}></BlogsSkeleton>
                     </>
                 )}
-                <Toaster position="top-center" reverseOrder={true}></Toaster>
             </div>
         </div>
     );
