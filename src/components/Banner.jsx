@@ -7,7 +7,7 @@ import {
 
 const Banner = () => {
     return (
-        <Card className="w-full md:p-10 p-2 ">
+        <Card className="w-full md:p-10">
             <CardHeader></CardHeader>
             <CardContent className="flex md:flex-row flex-col justify-around items-center max-h-[600px] gap-5">
                 <div className="md:grid md:grid-cols-2 md:grid-flow-col gap-5 order-2 md:order-1">

@@ -1,6 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 import toast from "react-hot-toast";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 const LogIn = () => {
     const navigate = useNavigate();
@@ -26,6 +27,13 @@ const LogIn = () => {
             <div className="container relative h-[800px] flex-col items-center justify-center grid lg:max-w-none lg:grid-cols-2 lg:px-0">
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
                     <div className="absolute inset-0 bg-zinc-900" />
+                    <div className="relative z-20 w-32 flex items-center text-lg font-medium">
+                        <div>
+                            <Avatar className="mr-2">
+                                <AvatarImage src="https://i.ibb.co/NmRFDbN/logo.png" />
+                            </Avatar>
+                        </div>
+                    </div>
                     <div className="relative z-20 mt-auto">
                         <blockquote className="space-y-2">
                             <p className="text-lg">

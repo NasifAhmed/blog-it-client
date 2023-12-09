@@ -2,6 +2,7 @@ import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Textarea } from "../components/ui/textarea";
+import toast from "react-hot-toast";
 import {
     Select,
     SelectContent,
@@ -14,17 +15,25 @@ import { useAxios } from "../hooks/useAxios";
 import { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { Heading1 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const AddBlog = () => {
     const [isLoading, setIsLoading] = useState(false);
     const axios = useAxios();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const addBlogMutation = useMutation({
         mutationFn: (data) => {
             axios
                 .post("/blogs", data, { withCredentials: true })
                 .then((res) => console.log(`Post query response ${res}`));
+        },
+        onSuccess: () => {
+            toast.success("Successfully added blog !");
+        },
+        onError: () => {
+            toast.error("Could not add blog !");
         },
     });
 
@@ -51,6 +60,13 @@ const AddBlog = () => {
             time_added: time.toISOString(),
             time_updated: time.toISOString(),
         });
+        // if (addBlogMutation.isSuccess) {
+        //     toast.success("Successfully update blog !");
+        //     navigate("/update-blog");
+        // }
+        // if (addBlogMutation.isError) {
+        //     toast.error("Could not update blog !");
+        // }
     };
 
     return (
@@ -141,11 +157,11 @@ const AddBlog = () => {
                         )} */}
                         Add
                     </Button>
-                    {addBlogMutation.isSuccess && (
+                    {/* {addBlogMutation.isSuccess && (
                         <div>
                             <h1>SUCCESS</h1>
                         </div>
-                    )}
+                    )} */}
                 </div>
             </form>
         </div>

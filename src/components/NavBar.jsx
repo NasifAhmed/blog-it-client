@@ -45,9 +45,9 @@ const NavBar = () => {
     };
 
     return (
-        <nav className="flex justify-between items-center font-medium text-lg mb-20">
+        <nav className="flex justify-between items-center font-medium text-lg mb-8 md:mb-20">
             <div
-                className="flex-1 mr-auto flex-col gap-2"
+                className="flex-1 mr-auto flex-col gap-2 cursor-pointer"
                 onClick={() => navigate("/")}
             >
                 <Avatar className="mr-2">
@@ -74,14 +74,14 @@ const NavBar = () => {
                 >
                     Featured Blogs
                 </NavLink>
+                <NavLink
+                    to={`/add-blog`}
+                    className={"transition-colors hover:text-primary"}
+                >
+                    Add Blog
+                </NavLink>
                 {user && (
                     <>
-                        <NavLink
-                            to={`/add-blog`}
-                            className={"transition-colors hover:text-primary"}
-                        >
-                            Add Blog
-                        </NavLink>
                         <NavLink
                             to={`/wishlist`}
                             className={"transition-colors hover:text-primary"}
@@ -136,7 +136,7 @@ const NavBar = () => {
                             <Menu />
                         </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="bg-background">
+                    <DropdownMenuContent className="bg-background space-y-5">
                         <DropdownMenuItem>
                             <Button
                                 variant="ghost"
@@ -195,7 +195,7 @@ const NavBar = () => {
                             ) : (
                                 <div className="flex flex-col">
                                     <Button
-                                        className=" md:hidden"
+                                        className=" md:hidden mb-2"
                                         onClick={() => navigate("/login")}
                                     >
                                         Log In

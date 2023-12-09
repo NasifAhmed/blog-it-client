@@ -16,18 +16,26 @@ import { AuthContext } from "../providers/AuthProvider";
 import { Heading1 } from "lucide-react";
 import { useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const UpdateBlog = () => {
     const [isLoading, setIsLoading] = useState(false);
     const { id } = useParams();
     const axios = useAxios();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const updateBlogMutation = useMutation({
         mutationFn: async (data) => {
             await axios
                 .put(`/blogs?id=${id}`, data, { withCredentials: true })
                 .then((res) => console.log(`Post query response ${res}`));
+        },
+        onSuccess: () => {
+            toast.success("Successfully updated blog !");
+        },
+        onError: () => {
+            toast.error("Could not update blog !");
         },
     });
 
@@ -36,7 +44,7 @@ const UpdateBlog = () => {
         queryFn: async () => {
             const res = await axios.get(`/blogs?id=${id}`);
             // await new Promise((resolve) => setTimeout(resolve, 3000));
-            toast.success("Data successfully fetched!");
+            // toast.success("Data successfully fetched!");
             return res.data;
         },
     });
@@ -54,23 +62,26 @@ const UpdateBlog = () => {
         console.log(title, imageURL, category, shortDesc, longDesc);
         const time = new Date();
 
-        toast.promise(
-            updateBlogMutation.mutateAsync({
-                title: title,
-                image_url: imageURL,
-                desc_short: shortDesc,
-                desc_long: longDesc,
-                category: category,
-                owner: user.email,
-                time_added: time.toISOString(),
-                time_updated: time.toISOString(),
-            }),
-            {
-                loading: "Adding to wishlist...",
-                success: <b>Added to wishlist!</b>,
-                error: <b>Could not save.</b>,
-            }
-        );
+        updateBlogMutation.mutate({
+            title: title,
+            image_url: imageURL,
+            desc_short: shortDesc,
+            desc_long: longDesc,
+            category: category,
+            owner: user.email,
+            time_added: time.toISOString(),
+            time_updated: time.toISOString(),
+        });
+        // if (updateBlogMutation.isLoading) {
+        //     toast.success("Updating blog !");
+        // }
+        // if (updateBlogMutation.isSuccess) {
+        //     toast.success("Successfully updated blog !");
+        //     navigate("/update-blog");
+        // }
+        // if (updateBlogMutation.isError) {
+        //     toast.error("Could not update blog !");
+        // }
     };
 
     return (
@@ -89,8 +100,7 @@ const UpdateBlog = () => {
                                 id="title"
                                 placeholder="Blog Title"
                                 type="text"
-                                value={data.title}
-                                disabled={updateBlogMutation.isLoading}
+                                // defaultValue={data.title}
                             />
                             <Label className=" font-medium" htmlFor="imageUrl">
                                 Image URL
@@ -101,8 +111,7 @@ const UpdateBlog = () => {
                                 id="imageUrl"
                                 placeholder="URL of a relevant image"
                                 type="url"
-                                value={data.image_url}
-                                disabled={updateBlogMutation.isLoading}
+                                // defaultValue={data.image_url}
                             />
                             <Label className=" font-medium" htmlFor="category">
                                 Select a Category
@@ -111,7 +120,7 @@ const UpdateBlog = () => {
                                 required
                                 name="category"
                                 id="category"
-                                defaultValue={data.category}
+                                // defaultValue={data.category}
                             >
                                 <SelectTrigger className="w-[180px]">
                                     <SelectValue placeholder="Categories" />
@@ -150,8 +159,7 @@ const UpdateBlog = () => {
                                 id="shortDesc"
                                 placeholder="Write a one line summary for your blog"
                                 type="text"
-                                value={data.desc_short}
-                                disabled={updateBlogMutation.isLoading}
+                                // defaultValue={data.desc_short}
                             />
                             <Label className=" font-medium" htmlFor="longDesc">
                                 Blog
@@ -163,21 +171,20 @@ const UpdateBlog = () => {
                                 id="longDesc"
                                 placeholder="Write your blog here."
                                 type="text"
-                                value={data.desc_long}
-                                disabled={updateBlogMutation.isLoading}
+                                // defaultValue={data.desc_long}
                             />
                         </div>
-                        <Button disabled={updateBlogMutation.isLoading}>
+                        <Button>
                             {/* {isLoading && (
                             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                         )} */}
-                            Add
+                            Update Blog
                         </Button>
-                        {updateBlogMutation.isSuccess && (
+                        {/* {updateBlogMutation.isSuccess && (
                             <div>
                                 <h1>SUCCESS</h1>
                             </div>
-                        )}
+                        )} */}
                     </div>
                 </form>
             )}

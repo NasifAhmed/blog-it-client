@@ -11,7 +11,7 @@ const RecentComments = () => {
     const response = useQuery({
         queryKey: ["comments", "recent"],
         queryFn: async () => {
-            const res = await axios.get("/comments?sort=time_added");
+            const res = await axios.get("/comments?sort=-time_added");
 
             // await new Promise((resolve) => setTimeout(resolve, 3000));
             return res.data;
@@ -29,7 +29,7 @@ const RecentComments = () => {
                         <BlogsSkeleton key={4}></BlogsSkeleton>
                     </>
                 ) : (
-                    response.data.slice(0, 4).map((data) => (
+                    response.data.slice(0, 6).map((data) => (
                         <Card key={data._id}>
                             <CardHeader>
                                 <div className="flex justify-start items-center gap-5">

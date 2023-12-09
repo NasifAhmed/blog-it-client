@@ -49,7 +49,7 @@ const BlogCard = ({ payload, toast }) => {
     };
 
     return (
-        <div className="transform transition-transform hover:scale-105 cursor-pointer">
+        <div className="transform transition-transform md:hover:scale-105 cursor-pointer">
             <Card className="h-full w-full -z-50 flex flex-col">
                 <CardHeader className="flex-grow">
                     <CardTitle>

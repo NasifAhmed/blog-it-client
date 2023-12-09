@@ -65,7 +65,7 @@ const WishListCard = ({ payload, wishListCallBack, toast }) => {
             {blogData.isLoading ? (
                 <BlogsSkeleton key={1}></BlogsSkeleton>
             ) : (
-                <div className="transform transition-transform hover:scale-105 cursor-pointer">
+                <div className="transform transition-transform md:hover:scale-105 cursor-pointer">
                     <Card className="h-full w-full -z-50">
                         <CardHeader>
                             <CardTitle>
@@ -86,8 +86,8 @@ const WishListCard = ({ payload, wishListCallBack, toast }) => {
                                     backgroundImage: `url(${blogData.data.image_url})`,
                                 }}
                             >
-                                <div className="h-[150px] absolute bottom-0 left-0 opacity-90 w-full rounded-md p-5 bg-gradient-to-t from-white dark:from-black flex flex-col justify-end items-center">
-                                    <p className="text-base md:text-xl">
+                                <div className="h-[300px] absolute bottom-0 left-0 w-full rounded-md p-5 bg-gradient-to-t from-black flex flex-col justify-end items-center">
+                                    <p className="text-white text-base md:text-xl">
                                         {blogData.data.desc_short}
                                     </p>
                                 </div>
